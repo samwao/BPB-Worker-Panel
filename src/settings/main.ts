@@ -63,7 +63,7 @@ export async function setCustomDomain(customDomain: string) {
     const { deployType } = getGlobals();
 
     try {
-        const tld = customDomain.split('.').slice(-2).join('.');
+        const tld = customDomain.split('.').slice(1).join('.');
         const dnsZones = await listZones();
         const zone = dnsZones?.find((z: any) => z.name === tld);
         if (!zone) throw new Error(`Specified domain ${tld} is not registered on your Cloudflare account.`);
